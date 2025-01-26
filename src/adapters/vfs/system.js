@@ -180,6 +180,8 @@ module.exports = (core) => {
     } else {
       await addFileToArchive(zipfile, realPath);
     }
+
+    await fs.remove(realPath);
   };
 
   return {
@@ -432,9 +434,6 @@ module.exports = (core) => {
             // Add the files to the archive
             for (const realPath of realPaths) {
               await addToArchive(zipfile, realPath);
-
-              // Delete the original file
-              // fs.unlink(realPath);
             }
 
             zipfile.end();
@@ -455,9 +454,6 @@ module.exports = (core) => {
 
             // Extract the archive
             await extract(realPath, {dir: target});
-
-            // Delete the archive file
-            // fs.unlink(realPath);
           }
 
           break;
