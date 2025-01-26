@@ -193,7 +193,7 @@ module.exports = (core) => {
       const watch = chokidar.watch(dest, mount.attributes.chokidar || {});
       const restr = dest.replace(/\*\*/g, '([^/]*)');
       const re = new RegExp(restr + '/(.*)');
-      const seg =  matchSegments(mount.attributes.root)
+      const seg = matchSegments(mount.attributes.root)
         .map(s => s.replace(/\{|\}/g, ''))
         .filter(s => segments[s].dynamic);
 
@@ -328,7 +328,7 @@ module.exports = (core) => {
         } else {
           write();
         }
-      }).catch((err) => err.code === 'ENOENT' ? write()  : reject(err));
+      }).catch((err) => err.code === 'ENOENT' ? write() : reject(err));
     }),
 
     /**
